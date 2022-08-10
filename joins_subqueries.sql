@@ -92,8 +92,11 @@ WHERE country_id IN (
 -- Answer: India has 60 cities
 
 -- Question 9
-SELECT actor_id, count(*)
-FROM film_actor
-GROUP BY actor_id 
+SELECT first_name, last_name, actor.actor_id, count(*)
+FROM actor
+JOIN film_actor 
+ON actor.actor_id = film_actor.actor_id
+GROUP BY actor.actor_id 
+HAVING count(*) BETWEEN 23 AND 26
 ORDER BY count(*);
--- minimum number of movies an actor appears in is 14; no actors appear in between 3 and 6 movies
+-- Answer: 55 actors have been in at least 23 movies, but no more than 26 movies; see query
